@@ -296,7 +296,14 @@
                                         </div>
                                     </div>
                                     <div class="p-4 md:p-6 flex-1 flex flex-col justify-between">
-                                        <h3 class="font-bold text-gray-900 truncate md:text-lg mb-4">{{ $product->name }}</h3>
+                                        <div>
+                                            <h3 class="font-bold text-gray-900 truncate md:text-lg mb-1">{{ $product->name }}</h3>
+                                            @if($product->description)
+                                                <p class="text-xs text-gray-500 line-clamp-2 mb-4" title="{{ $product->description }}">{{ $product->description }}</p>
+                                            @else
+                                                <div class="mb-4"></div>
+                                            @endif
+                                        </div>
                                         
                                         <div class="grid grid-cols-2 gap-2 mt-auto">
                                             <button onclick="zityCart.addItem({id: '{{ $product->id }}', name: '{{ addslashes($product->name) }}', price: {{ $product->price ?? 0 }}, image: '{{ $product->image ? asset('storage/' . $product->image) : '' }}'})" class="py-2.5 bg-indigo-50 text-indigo-600 rounded-xl text-[10px] md:text-xs font-bold flex items-center justify-center space-x-1 hover:bg-indigo-600 hover:text-white transition-all">

@@ -60,6 +60,10 @@ class BusinessForm
                             ->avatar()
                             ->disk('public')
                             ->directory('business-logos'),
+                        \Filament\Forms\Components\FileUpload::make('cover_image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('business-covers'),
                         TextInput::make('phone')
                             ->tel(),
                         TextInput::make('whatsapp')

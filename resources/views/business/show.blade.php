@@ -112,8 +112,14 @@
         
         <div class="flex-grow">
             <!-- Header/Cover Section -->
-            <div class="h-32 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden rounded-b-[2rem]">
+            @if($business->cover_image)
+            <div class="relative overflow-hidden rounded-b-[2rem]" style="height: 35vh; min-height: 200px; max-height: 400px;">
+                <img src="{{ asset('storage/' . $business->cover_image) }}" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/20"></div>
+            @else
+            <div class="h-32 md:h-48 relative bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden rounded-b-[2rem]">
                 <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 0.5px, transparent 0.5px); background-size: 10px 10px;"></div>
+            @endif
                 <!-- Top controls -->
                 <div class="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
                     <div class="flex flex-col items-center">

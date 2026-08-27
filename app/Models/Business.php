@@ -18,6 +18,7 @@ class Business extends Model
         'name',
         'slug',
         'logo',
+        'cover_image',
         'address',
         'city',
         'state',

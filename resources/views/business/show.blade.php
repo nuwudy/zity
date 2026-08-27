@@ -305,17 +305,20 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <!-- CTA Card -->
-                            <div class="bg-indigo-600 rounded-3xl p-6 text-white shadow-xl flex flex-col items-center justify-center text-center space-y-4 border border-indigo-500 group">
-                                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+
+                        <!-- CTA Banner -->
+                        <div class="mt-8 bg-indigo-50 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between border border-indigo-100">
+                            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-sm leading-tight">Create Your Own</h4>
-                                    <p class="text-[10px] text-indigo-100 mt-1">Get a page like this for free.</p>
+                                    <h4 class="font-bold text-gray-900">Want a shop like this?</h4>
+                                    <p class="text-sm text-gray-500">Create your own free zityCard today.</p>
                                 </div>
-                                <a href="{{ route('home') }}#register" class="w-full py-2.5 bg-white text-indigo-600 rounded-xl text-[10px] font-bold shadow-lg active:scale-95 transition-all">Create Now</a>
                             </div>
+                            <a href="{{ route('home') }}#register" class="px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-sm hover:bg-indigo-700 transition-colors w-full md:w-auto text-center">Create Now</a>
                         </div>
                     @endif
                 </div>
@@ -349,17 +352,20 @@
                                 </button>
                                 @endif
                             @endforeach
-                            <!-- CTA Service Card -->
-                            <div class="bg-indigo-600 rounded-3xl p-6 text-white shadow-xl flex flex-col items-center justify-center text-center space-y-4 border border-indigo-500 group">
-                                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+
+                        <!-- CTA Service Banner -->
+                        <div class="mt-8 bg-indigo-50 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between border border-indigo-100">
+                            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-sm leading-tight">List Your Service</h4>
-                                    <p class="text-[10px] text-indigo-100 mt-1">Free business page on Zity.</p>
+                                    <h4 class="font-bold text-gray-900">Are you a service provider?</h4>
+                                    <p class="text-sm text-gray-500">List your services for free on Zity.</p>
                                 </div>
-                                <a href="{{ route('home') }}#register" class="w-full py-2.5 bg-white text-indigo-600 rounded-xl text-[10px] font-bold shadow-lg active:scale-95 transition-all">Create Now</a>
                             </div>
+                            <a href="{{ route('home') }}#register" class="px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-sm hover:bg-indigo-700 transition-colors w-full md:w-auto text-center">Create Now</a>
                         </div>
                     @endif
                 </div>

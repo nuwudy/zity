@@ -111,145 +111,70 @@
         <div class="flex flex-col min-h-screen">
         
         <div class="flex-grow">
-            <!-- Header/Cover Section -->
-            @if($business->cover_image)
-            <div class="relative overflow-hidden rounded-b-[2rem]" style="height: 35vh; min-height: 200px; max-height: 400px;">
-                <img src="{{ asset('storage/' . $business->cover_image) }}" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/20"></div>
-            @else
-            <div class="h-32 md:h-48 relative bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden rounded-b-[2rem]">
-                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 0.5px, transparent 0.5px); background-size: 10px 10px;"></div>
-            @endif
-                <!-- Top controls -->
-                <div class="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
-                    <div class="flex flex-col items-center">
-                        <button onclick="shareApp()" class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 transition-transform active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                        </button>
-                        <span class="text-[7px] font-bold text-white mt-1.5 tracking-tighter opacity-90 text-center leading-none">share my<br>zityCard</span>
-                    </div>
-
-                    @if(auth()->check() && (auth()->id() == $business->user_id || auth()->user()->isMasterAdmin()))
-                    <div class="flex-1 flex justify-center -mt-1">
-                        <a href="/admin" class="glass bg-white/20 text-white px-4 py-1.5 rounded-full flex items-center space-x-1.5 shadow-lg border border-white/30 hover:bg-white/30 transition-all text-[9px] font-bold backdrop-blur-md">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.370 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.370a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span>Dashboard</span>
-                        </a>
-                    </div>
-                    @endif
-
-                    <div class="flex items-start">
-                        @if(auth()->check())
-                        <div class="flex flex-col items-center">
-                            <a href="/logout" class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 transition-transform active:scale-95">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                            </a>
-                            <span class="text-[7px] font-bold text-white mt-1.5 tracking-tighter opacity-90">home</span>
-                        </div>
+            <!-- Unified Header Section -->
+            <div class="bg-[#2a2a2a] text-white pt-6 pb-4 px-4 md:px-8 rounded-b-2xl md:rounded-none relative z-10 shadow-lg">
+                <!-- Top Header: Logo, Name, Badges, Actions -->
+                <div class="max-w-7xl mx-auto flex items-start gap-4">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        @if($business->logo)
+                            <img src="{{ asset('storage/' . $business->logo) }}" class="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover border border-gray-600 shadow-sm">
                         @else
-                        <div class="flex flex-col items-center">
-                            <a href="/admin/login" class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 transition-transform active:scale-95">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                            </a>
-                            <span class="text-[7px] font-bold text-white mt-1.5 tracking-tighter opacity-90 text-center leading-none">login</span>
-                        </div>
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-800 text-white rounded-xl flex items-center justify-center font-bold text-2xl border border-gray-600 shadow-sm">{{ substr($business->name, 0, 1) }}</div>
                         @endif
                     </div>
-                </div>
-            </div>
-
-            <!-- Avatar -->
-            <div class="flex justify-center -mt-16 relative z-10 px-6">
-                <div class="relative">
-                    @if($business->logo)
-                        <img src="{{ asset('storage/' . $business->logo) }}" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-xl bg-white">
-                    @else
-                        <div class="w-28 h-28 bg-white border-4 border-white text-indigo-600 rounded-full flex items-center justify-center font-bold text-4xl shadow-xl">{{ substr($business->name, 0, 1) }}</div>
-                    @endif
-                    <div class="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center shadow-lg">
-                        <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>
+                    
+                    <!-- Details -->
+                    <div class="flex-1">
+                        <h1 class="text-xl md:text-2xl font-bold">{{ $business->name }}</h1>
+                        <!-- Badges -->
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="bg-green-600 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 rounded flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-white text-green-600 flex items-center justify-center text-[8px]">H</span> 100% HALAL</span>
+                            <span class="bg-green-500 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 rounded flex items-center gap-1">PURE VEG</span>
+                            <span class="bg-red-600 text-white text-[10px] md:text-xs font-bold px-2 py-0.5 rounded flex items-center gap-1">NON-VEG</span>
+                        </div>
+                        <!-- Action Buttons -->
+                        <div class="flex gap-2 mt-3">
+                            <a href="tel:{{ $business->phone }}" class="w-8 h-8 bg-blue-500 rounded flex items-center justify-center text-white hover:bg-blue-600 transition shadow-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </a>
+                            <a href="https://wa.me/{{ $business->whatsapp }}" target="_blank" class="w-8 h-8 bg-green-500 rounded flex items-center justify-center text-white hover:bg-green-600 transition shadow-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.653a11.888 11.888 0 005.685 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </a>
+                            @if(auth()->check() && (auth()->id() == $business->user_id || auth()->user()->isMasterAdmin()))
+                            <a href="/admin" class="ml-auto text-xs flex items-center gap-1 text-gray-400 hover:text-white border border-gray-600 px-2 rounded">
+                                Dashboard
+                            </a>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Profile Info -->
-            <div class="text-center mt-6 px-6 flex flex-col items-center">
-                <h1 class="text-xl font-bold text-gray-900 leading-tight break-words whitespace-normal text-center w-full max-w-[90vw] -mt-2">{{ $business->name }}</h1>
-                <p class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest mt-1 mb-2 bg-indigo-50 px-3 py-1 rounded-full w-fit">Verified Store</p>
-                @if($business->description)
-                <p class="text-gray-500 text-sm line-clamp-2">{{ Str::limit($business->description, 80) }}</p>
-                @endif
+                <!-- Search Bar -->
+                <div class="max-w-7xl mx-auto mt-6 mb-2">
+                    <div class="relative max-w-3xl mx-auto">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <input type="text" placeholder="Search items in this menu" class="w-full bg-[#3a3a3a] border-none rounded-xl py-3 pl-10 pr-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 outline-none text-sm">
+                    </div>
+                </div>
             </div>
-
-            <!-- Quick Action Buttons -->
-            <div class="flex justify-center items-center space-x-6 mt-6 px-6">
-                <a href="tel:{{ $business->phone }}" class="flex flex-col items-center group">
-                    <div class="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-gray-700 border border-gray-100 shadow-sm animate-pulse-ring active:scale-95 transition-transform">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-bold text-gray-500 mt-2">Call</span>
-                </a>
-                <a href="https://wa.me/{{ $business->whatsapp }}" target="_blank" class="flex flex-col items-center group">
-                    <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600 border border-green-100 shadow-sm animate-pulse-ring active:scale-95 transition-transform" style="animation-delay: 0.2s">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.653a11.888 11.888 0 005.685 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                    <span class="text-[10px] font-bold text-gray-500 mt-2">Message</span>
-                </a>
-                @if($business->email)
-                <a href="mailto:{{ $business->email }}" class="flex flex-col items-center group">
-                    <div class="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600 border border-indigo-100 shadow-sm animate-pulse-ring active:scale-95 transition-transform" style="animation-delay: 0.4s">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-bold text-gray-500 mt-2">Email</span>
-                </a>
-                @endif
-                @if($business->address)
-                <a href="https://maps.google.com/?q={{ urlencode($business->address) }}" target="_blank" class="flex flex-col items-center group">
-                    <div class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-600 border border-orange-100 shadow-sm animate-pulse-ring active:scale-95 transition-transform" style="animation-delay: 0.6s">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-bold text-gray-500 mt-2">Map</span>
-                </a>
-                @endif
+            
+            <!-- Categories Bar -->
+            <div class="bg-gray-200/90 border-b border-gray-300 sticky top-0 z-40 backdrop-blur-md">
+                <div class="max-w-7xl mx-auto px-4 py-3 flex overflow-x-auto hide-scrollbar space-x-2 items-center">
+                    <button class="bg-[#10b981] text-white px-4 py-1.5 rounded text-xs font-bold whitespace-nowrap shadow-sm">All</button>
+                    @foreach($productCategories as $cat)
+                        <button class="bg-[#3a3a3a] text-gray-100 px-4 py-1.5 rounded text-xs font-bold whitespace-nowrap shadow-sm hover:bg-gray-700 transition">{{ $cat }}</button>
+                    @endforeach
+                    <button class="bg-transparent text-green-700 px-4 py-1.5 rounded text-xs font-bold whitespace-nowrap hover:bg-green-100 transition">See all</button>
+                </div>
             </div>
         </div>
 
-        <!-- Desktop Header (Hidden on Mobile) -->
-        <header class="hidden md:block sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                <a href="{{ $business->getUrl() }}" class="flex items-center space-x-4 group">
-                    @if($business->logo)
-                        <img src="{{ asset('storage/' . $business->logo) }}" class="w-12 h-12 rounded-2xl object-cover shadow-sm group-hover:scale-105 transition-transform">
-                    @else
-                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center font-bold text-xl shadow-sm group-hover:scale-105 transition-transform">{{ substr($business->name, 0, 1) }}</div>
-                    @endif
-                    <div class="min-w-0 flex-1">
-                        <h1 class="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors break-words whitespace-normal max-w-md leading-none">{{ $business->name }}</h1>
-                        <p class="text-sm text-indigo-600 font-semibold tracking-wide uppercase">Official Store</p>
-                    </div>
-                </a>
-                
-                <nav class="flex items-center space-x-8 font-bold text-gray-500">
-                    <a href="#tab-shop" class="hover:text-indigo-600 transition-colors">Shop</a>
-                    @if($business->isService())
-                    <a href="#tab-services" class="hover:text-indigo-600 transition-colors">Services</a>
-                    @endif
-                    <a href="#tab-about" class="hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#tab-contact" class="hover:text-indigo-600 transition-colors">Contact</a>
-                    <div class="h-6 w-px bg-gray-100 mx-2"></div>
-                    <a href="{{ auth()->check() ? '/admin' : '/admin/login' }}" class="text-indigo-600 hover:text-indigo-700 transition-colors">
-                        {{ auth()->check() ? 'Dashboard' : 'Login' }}
-                    </a>
-                    @if(auth()->check())
-                        <a href="/logout" class="text-red-500 hover:text-red-600 transition-colors">Logout</a>
-                    @endif
-                    <button onclick="shareApp()" class="px-6 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Share Shop</button>
-                </nav>
-            </div>
-        </header>
-
         <!-- Dynamic Content Area -->
-        <main class="safe-bottom flex-1 md:bg-gray-50/50">
+        <main class="safe-bottom flex-1 md:bg-gray-200 pb-20">
             
             <div class="max-w-7xl mx-auto md:py-12">
                 <!-- Marketplace Section -->
@@ -270,51 +195,38 @@
                             <p class="text-gray-400 font-bold text-xl">Coming Soon</p>
                             <p class="text-gray-400 mt-2">New products are arriving shortly!</p>
                         </div>
-                    @else
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-6 px-2 md:px-0">
                             @foreach($products as $product)
-                                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col h-full">
-                                    <div class="aspect-square relative overflow-hidden bg-gray-50">
-                                        <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                                        @if($product->price)
-                                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 px-3 py-1.5 rounded-xl text-sm font-bold shadow-sm">
-                                                ₹{{ number_format($product->price) }}
-                                            </div>
-                                        @endif
-                                        <button onclick="shareProduct('{{ $product->id }}', '{{ addslashes($product->name) }}')" class="absolute top-4 left-4 w-8 h-8 bg-white/90 backdrop-blur-md text-gray-700 rounded-full flex items-center justify-center shadow-sm hover:bg-indigo-600 hover:text-white transition-all z-10">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
-                                        </button>
-                                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center space-y-3 p-4 z-0">
-                                            <button onclick="zityCart.addItem({id: '{{ $product->id }}', name: '{{ addslashes($product->name) }}', price: {{ $product->price ?? 0 }}, image: '{{ $product->image ? asset('storage/' . $product->image) : '' }}'})" class="w-full bg-white text-indigo-600 px-4 py-3 rounded-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl flex items-center justify-center space-x-2">
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                                <span>Add to Cart</span>
-                                            </button>
-                                            <button onclick="orderViaWhatsApp('{{ $product->name }}')" class="w-full bg-green-500 text-white px-4 py-3 rounded-xl font-bold transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 shadow-xl flex items-center justify-center space-x-2">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.653a11.888 11.888 0 005.685 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                                                <span>Buy Now</span>
+                                <div class="bg-white rounded-2xl overflow-visible shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col h-full relative mt-2">
+                                    <!-- Image Section -->
+                                    <div class="relative w-full aspect-square rounded-t-2xl overflow-hidden bg-gray-50">
+                                        <img src="{{ $product->image ? asset('storage/' . $product->image) : 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' }}" class="w-full h-full object-cover">
+                                        
+                                        <!-- ADD Button Overlapping Image Bottom -->
+                                        <div class="absolute -bottom-0 left-0 right-0 flex justify-center translate-y-1/2">
+                                            <button onclick="zityCart.addItem({id: '{{ $product->id }}', name: '{{ addslashes($product->name) }}', price: {{ $product->price ?? 0 }}, image: '{{ $product->image ? asset('storage/' . $product->image) : '' }}'})" class="bg-white text-green-600 border border-green-200 shadow-md px-6 py-1.5 rounded-lg font-bold text-sm uppercase hover:bg-green-50 transition active:scale-95 z-20">
+                                                ADD
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="p-4 md:p-6 flex-1 flex flex-col justify-between">
-                                        <div>
-                                            <h3 class="font-bold text-gray-900 truncate md:text-lg mb-1">{{ $product->name }}</h3>
-                                            @if($product->description)
-                                                <p class="text-xs text-gray-500 line-clamp-2 mb-4" title="{{ $product->description }}">{{ $product->description }}</p>
-                                            @else
-                                                <div class="mb-4"></div>
-                                            @endif
+                                    
+                                    <!-- Details Section -->
+                                    <div class="p-3 pt-6 flex-1 flex flex-col bg-white rounded-b-2xl">
+                                        <!-- Title & Rating -->
+                                        <div class="flex items-start justify-between gap-1 mb-1">
+                                            <h3 class="font-bold text-gray-800 text-sm md:text-base leading-tight line-clamp-2">{{ $product->name }}</h3>
                                         </div>
                                         
-                                        <div class="grid grid-cols-2 gap-2 mt-auto">
-                                            <button onclick="zityCart.addItem({id: '{{ $product->id }}', name: '{{ addslashes($product->name) }}', price: {{ $product->price ?? 0 }}, image: '{{ $product->image ? asset('storage/' . $product->image) : '' }}'})" class="py-2.5 bg-indigo-50 text-indigo-600 rounded-xl text-[10px] md:text-xs font-bold flex items-center justify-center space-x-1 hover:bg-indigo-600 hover:text-white transition-all">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                                                <span>Add to Cart</span>
-                                            </button>
-                                            <button onclick="orderViaWhatsApp('{{ $product->name }}')" class="py-2.5 bg-green-50 text-green-600 rounded-xl text-[10px] md:text-xs font-bold flex items-center justify-center space-x-1 hover:bg-green-600 hover:text-white transition-all">
-                                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.653a11.888 11.888 0 005.685 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                                                <span>WhatsApp</span>
-                                            </button>
-                                        </div>
+                                        <!-- Price -->
+                                        @if($product->price)
+                                            <div class="mt-auto pt-1 font-bold text-gray-900 text-sm">
+                                                ₹{{ number_format($product->price) }}
+                                            </div>
+                                        @endif
+                                        
+                                        @if($product->description)
+                                            <p class="text-[10px] text-gray-500 line-clamp-2 mt-1">{{ $product->description }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -657,8 +569,31 @@
     </div>
 </div>
  
+    <!-- Bottom Navigation Bar (Mobile) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 px-6 py-3 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] pb-safe">
+        <a href="#tab-shop" class="flex flex-col items-center text-indigo-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-[10px] font-bold mt-1">Home</span>
+        </a>
+        <a href="#tab-about" class="flex flex-col items-center text-gray-400 hover:text-indigo-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span class="text-[10px] font-bold mt-1">Offers</span>
+        </a>
+        <button onclick="zityCart.toggle()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 relative">
+            <div class="relative">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <span id="nav-cart-count" class="absolute -top-1 -right-2 bg-red-500 text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white hidden">0</span>
+            </div>
+            <span class="text-[10px] font-bold mt-1">Cart</span>
+        </button>
+        <a href="#tab-about" class="flex flex-col items-center text-gray-400 hover:text-indigo-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span class="text-[10px] font-bold mt-1">About</span>
+        </a>
+    </div>
+
     <!-- Floating Cart Button -->
-    <button onclick="zityCart.toggle()" class="fixed bottom-32 right-6 z-[60] bg-indigo-600 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all group border-4 border-white/20 backdrop-blur-xl">
+    <button onclick="zityCart.toggle()" class="hidden md:block fixed bottom-32 right-6 z-[60] bg-indigo-600 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all group border-4 border-white/20 backdrop-blur-xl">
         <div class="relative">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
             <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
@@ -774,6 +709,7 @@
             render() {
                 const container = document.getElementById('cart-items');
                 const countBadge = document.getElementById('cart-count');
+                const navCountBadge = document.getElementById('nav-cart-count');
                 const totalDisplay = document.getElementById('cart-total');
                 const checkoutBtn = document.getElementById('cart-checkout');
 
@@ -783,7 +719,8 @@
                             <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                             <p class="font-bold">Your cart is empty</p>
                         </div>`;
-                    countBadge.classList.add('hidden');
+                    if (countBadge) countBadge.classList.add('hidden');
+                    if (navCountBadge) navCountBadge.classList.add('hidden');
                     totalDisplay.innerText = '₹0';
                     checkoutBtn.disabled = true;
                     return;
@@ -817,8 +754,14 @@
                 });
 
                 container.innerHTML = html;
-                countBadge.innerText = count;
-                countBadge.classList.remove('hidden');
+                if (countBadge) {
+                    countBadge.innerText = count;
+                    countBadge.classList.remove('hidden');
+                }
+                if (navCountBadge) {
+                    navCountBadge.innerText = count;
+                    navCountBadge.classList.remove('hidden');
+                }
                 totalDisplay.innerText = '₹' + total.toLocaleString();
                 checkoutBtn.disabled = false;
             },

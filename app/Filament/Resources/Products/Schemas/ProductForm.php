@@ -21,6 +21,9 @@ class ProductForm
                     ->hidden(fn () => !auth()->user()?->isMasterAdmin() && \App\Models\Business::where('user_id', auth()->id())->count() === 1)
                     ->dehydrated(true),
 
+                TextInput::make('category')
+                    ->placeholder('e.g. Biryani, Meals veg, etc.')
+                    ->maxLength(255),
                 TextInput::make('name')
                     ->required(),
                 Textarea::make('description')

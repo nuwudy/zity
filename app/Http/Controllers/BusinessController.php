@@ -20,8 +20,8 @@ class BusinessController extends Controller
         }
 
         $products = $business->products()->where('is_active', true)->get();
-        // Product categories not yet implemented for filtering
-        $productCategories = collect();
+        // Collect unique product categories
+        $productCategories = $products->pluck('category')->filter()->unique();
 
         return view('business.show', compact('business', 'products', 'productCategories', 'ogProduct'));
     }

@@ -195,7 +195,8 @@
                             <p class="text-gray-400 font-bold text-xl">Coming Soon</p>
                             <p class="text-gray-400 mt-2">New products are arriving shortly!</p>
                         </div>
-                                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-6 px-2 md:px-0">
+                    @else
+                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-6 px-2 md:px-0">
                             @foreach($products as $product)
                                 <div class="bg-white rounded-2xl overflow-visible shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col h-full relative mt-2">
                                     <!-- Image Section -->

@@ -21,9 +21,19 @@ class ProductForm
                     ->hidden(fn () => !auth()->user()?->isMasterAdmin() && \App\Models\Business::where('user_id', auth()->id())->count() === 1)
                     ->dehydrated(true),
 
-                TextInput::make('category')
-                    ->placeholder('e.g. Biryani, Meals veg, etc.')
-                    ->maxLength(255),
+                \Filament\Forms\Components\Select::make('category')
+                    ->placeholder('Select or type a category')
+                    ->options(fn () => \App\Models\Product::whereNotNull('category')->distinct()->pluck('category', 'category')->toArray())
+                    ->searchable()
+                    ->createOptionForm([
+                        \Filament\Forms\Components\TextInput::make('new_category')
+                            ->label('New Category Name')
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return $data['new_category'];
+                    }),
                 TextInput::make('name')
                     ->required(),
                 Textarea::make('description')

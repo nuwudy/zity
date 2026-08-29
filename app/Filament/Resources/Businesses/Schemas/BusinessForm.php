@@ -8,6 +8,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TagsInput;
 use Filament\Schemas\Schema;
 
 class BusinessForm
@@ -25,6 +26,10 @@ class BusinessForm
                         TextInput::make('slug')
                             ->required()
                             ->unique(Business::class, ignoreRecord: true),
+                        TextInput::make('tagline')
+                            ->label('Tagline / Slogan')
+                            ->placeholder('e.g. Pure Herbal & Organic Care')
+                            ->columnSpanFull(),
                         Select::make('type')
                             ->label('Business Type')
                             ->options([
@@ -71,10 +76,25 @@ class BusinessForm
                         TextInput::make('email')
                             ->email(),
                         \Filament\Forms\Components\Select::make('categories')
-                            ->relationship('categories', 'name')
+                            ->relationship('categories', 'name', modifyQueryUsing: fn ($query) => auth()->user()?->isMasterAdmin() ? $query : $query->where('user_id', auth()->id()))
                             ->multiple()
                             ->searchable()
-                            ->preload(),
+                            ->preload()
+                            ->createOptionForm([
+                                \Filament\Forms\Components\TextInput::make('name')
+                                    ->label('Category Name')
+                                    ->required()
+                                    ->maxLength(255),
+                            ])
+                            ->createOptionUsing(function (array $data) {
+                                $name = $data['name'];
+                                $userId = auth()->id();
+                                $cat = \App\Models\Category::firstOrCreate(
+                                    ['name' => $name, 'user_id' => $userId],
+                                    ['slug' => \Illuminate\Support\Str::slug($name) . ($userId ? '-' . $userId : '')]
+                                );
+                                return $cat->id;
+                            }),
 
                         \Filament\Forms\Components\Select::make('status')
                             ->options([
@@ -89,6 +109,35 @@ class BusinessForm
                             ->default(false)
                             ->hidden(fn () => !auth()->user()?->isMasterAdmin()),
                     ])->columns(2),
+
+                \Filament\Schemas\Components\Section::make('Storefront Highlights & Badges')
+                    ->description('Customize the badges and "Why Choose Us" feature cards displayed on your storefront.')
+                    ->schema([
+                        TagsInput::make('badges')
+                            ->label('Store Badges / Highlights')
+                            ->placeholder('Type badge and press enter (e.g. 100% Herbal, Natural, Eco-friendly, Fast Delivery)')
+                            ->helperText('Badges displayed at the top of your store page under the contact buttons.')
+                            ->columnSpanFull(),
+                        Repeater::make('why_choose_us')
+                            ->label('Why Choose Us (Feature Cards)')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->label('Feature Title')
+                                    ->placeholder('e.g. Organic Ingredients, Vegan, Handmade')
+                                    ->required(),
+                                Textarea::make('description')
+                                    ->label('Description')
+                                    ->placeholder('e.g. Organic ingredients and natural sustainable products crafted with purity.')
+                                    ->rows(2)
+                                    ->required(),
+                            ])
+                            ->columns(2)
+                            ->addActionLabel('Add Feature Card')
+                            ->collapsible()
+                            ->columnSpanFull()
+                            ->defaultItems(0),
+                    ])
+                    ->collapsible(),
 
                 \Filament\Schemas\Components\Section::make('Service Details')
                     ->description('Fill in the details of the services you provide.')

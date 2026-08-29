@@ -19,10 +19,11 @@ class CategoryForm
                     ->required()
                     ->unique('categories', 'slug', ignoreRecord: true),
                 \Filament\Forms\Components\Select::make('parent_id')
-                    ->relationship('parent', 'name')
+                    ->relationship('parent', 'name', modifyQueryUsing: fn ($query) => auth()->user()?->isMasterAdmin() ? $query : $query->where('user_id', auth()->id()))
                     ->searchable()
                     ->preload(),
-                TextInput::make('icon'),
+                TextInput::make('icon')
+                    ->placeholder('e.g. 🌿, 🧴, ✂️'),
             ]);
     }
 }

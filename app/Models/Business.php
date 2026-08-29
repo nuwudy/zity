@@ -34,6 +34,9 @@ class Business extends Model
         'service_area',
         'experience_years',
         'availability',
+        'tagline',
+        'badges',
+        'why_choose_us',
         'facebook_url',
         'instagram_url',
         'youtube_url',
@@ -46,6 +49,8 @@ class Business extends Model
     protected $casts = [
         'services' => 'array',
         'branches' => 'array',
+        'badges' => 'array',
+        'why_choose_us' => 'array',
     ];
 
     public function isService(): bool

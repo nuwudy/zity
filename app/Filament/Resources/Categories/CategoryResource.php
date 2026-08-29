@@ -24,12 +24,23 @@ class CategoryResource extends Resource
 
     public static function shouldRegisterNavigation(): bool
     {
-        return auth()->user()?->isMasterAdmin() ?? false;
+        return true;
     }
 
     public static function canAnyView(): bool
     {
-        return auth()->user()?->isMasterAdmin() ?? false;
+        return true;
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (!auth()->user()?->isMasterAdmin()) {
+            $query->where('user_id', auth()->id());
+        }
+
+        return $query;
     }
 
     public static function form(Schema $schema): Schema

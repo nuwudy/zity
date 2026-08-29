@@ -11,7 +11,19 @@ class Category extends Model
         'slug',
         'icon',
         'parent_id',
+        'user_id',
+        'business_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function business()
+    {
+        return $this->belongsTo(Business::class);
+    }
 
     public function parent()
     {

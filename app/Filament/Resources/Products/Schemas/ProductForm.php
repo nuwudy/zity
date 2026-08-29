@@ -23,7 +23,14 @@ class ProductForm
 
                 \Filament\Forms\Components\Select::make('category')
                     ->placeholder('Select or type a category')
-                    ->options(fn () => \App\Models\Product::whereNotNull('category')->distinct()->pluck('category', 'category')->toArray())
+                    ->options(function () {
+                        if (auth()->user()?->isMasterAdmin()) {
+                            return \App\Models\Category::pluck('name', 'name')->toArray();
+                        }
+                        return \App\Models\Category::where('user_id', auth()->id())
+                            ->pluck('name', 'name')
+                            ->toArray();
+                    })
                     ->searchable()
                     ->createOptionForm([
                         \Filament\Forms\Components\TextInput::make('new_category')
@@ -32,7 +39,13 @@ class ProductForm
                             ->maxLength(255),
                     ])
                     ->createOptionUsing(function (array $data) {
-                        return $data['new_category'];
+                        $name = $data['new_category'];
+                        $userId = auth()->id();
+                        \App\Models\Category::firstOrCreate(
+                            ['name' => $name, 'user_id' => $userId],
+                            ['slug' => \Illuminate\Support\Str::slug($name) . ($userId ? '-' . $userId : '')]
+                        );
+                        return $name;
                     }),
                 TextInput::make('name')
                     ->required(),
@@ -40,7 +53,7 @@ class ProductForm
                     ->columnSpanFull(),
                 TextInput::make('price')
                     ->numeric()
-                    ->prefix('$'),
+                    ->prefix('₹'),
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')

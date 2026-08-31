@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SuggestionsController;
-
+use App\Http\Controllers\ZityCardController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/api/suggestions', [SuggestionsController::class, 'index'])->name('api.suggestions');
@@ -20,12 +19,13 @@ Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-// Place wildcard route at the very end
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/fix-storage', function () {
     \Illuminate\Support\Facades\Artisan::call('storage:link');
     return 'Storage link fixed successfully! <br><a href="/">Go back home</a>';
 });
-Route::get('/{business:slug}', [BusinessController::class, 'show'])
-    ->where('business', '^(?!admin|api|livewire|storage|build|_debugbar).*$')
-    ->name('business.show');
+
+// Wildcard public digital card route
+Route::get('/{slug}', [ZityCardController::class, 'show'])
+    ->where('slug', '^(?!admin|api|livewire|storage|build|_debugbar).*$')
+    ->name('card.show');

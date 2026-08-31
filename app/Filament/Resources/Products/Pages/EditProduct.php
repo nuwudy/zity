@@ -20,8 +20,8 @@ class EditProduct extends EditRecord
                 ->color('primary')
                 ->url(ProductResource::getUrl('create')),
             Action::make('view_shop')
-                ->label('View in Shop')
-                ->url(fn (): string => route('business.show', ['business' => $this->record->business->slug]))
+                ->label('View on Card')
+                ->url(fn (): string => $this->record->business->getUrl())
                 ->icon('heroicon-o-eye')
                 ->openUrlInNewTab(),
             DeleteAction::make(),

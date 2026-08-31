@@ -65,7 +65,7 @@ class Business extends Model
 
     public function getUrl(): string
     {
-        return route('business.show', ['business' => $this->slug]);
+        return route('card.show', ['slug' => $this->slug]);
     }
 
     public function user()

@@ -58,7 +58,11 @@
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                         </span>
-                        <input type="password" name="password" required placeholder="••••••••" class="w-full pl-9 pr-3 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                        <input type="password" id="modalLoginPassword" name="password" required placeholder="••••••••" class="w-full pl-9 pr-10 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                        <button type="button" onclick="togglePasswordVisibility('modalLoginPassword', this)" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-purple-600 transition" title="Show/Hide Password">
+                            <svg class="w-4 h-4 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            <svg class="w-4 h-4 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
+                        </button>
                     </div>
                 </div>
 
@@ -105,11 +109,23 @@
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
-                        <input type="password" name="password" required placeholder="Min 6 chars" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                        <div class="relative">
+                            <input type="password" id="modalRegPassword" name="password" required placeholder="Min 6 chars" class="w-full pl-3 pr-8 py-2 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                            <button type="button" onclick="togglePasswordVisibility('modalRegPassword', this)" class="absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400 hover:text-purple-600 transition">
+                                <svg class="w-3.5 h-3.5 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                <svg class="w-3.5 h-3.5 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
+                            </button>
+                        </div>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">Confirm</label>
-                        <input type="password" name="password_confirmation" required placeholder="Confirm" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                        <div class="relative">
+                            <input type="password" id="modalRegConfirm" name="password_confirmation" required placeholder="Confirm" class="w-full pl-3 pr-8 py-2 text-sm rounded-xl border border-slate-200 focus:border-purple-600 focus:ring-2 focus:ring-purple-100 outline-none transition bg-slate-50/50">
+                            <button type="button" onclick="togglePasswordVisibility('modalRegConfirm', this)" class="absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400 hover:text-purple-600 transition">
+                                <svg class="w-3.5 h-3.5 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                <svg class="w-3.5 h-3.5 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -203,6 +219,19 @@ function switchAuthTab(tab) {
         tabRegisterBtn.className = "flex-1 py-2 text-xs font-semibold rounded-lg transition bg-white text-purple-700 shadow-sm";
         tabLoginBtn.className = "flex-1 py-2 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition";
         if (title) title.innerText = "Join Zity & Start Saving";
+    }
+}
+
+function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    const openIcon = btn.querySelector('.eye-open');
+    const closedIcon = btn.querySelector('.eye-closed');
+    if (openIcon && closedIcon) {
+        openIcon.classList.toggle('hidden', isPassword);
+        closedIcon.classList.toggle('hidden', !isPassword);
     }
 }
 </script>

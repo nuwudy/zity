@@ -333,8 +333,8 @@
                 </a>
             </div>
 
-            <!-- Deals Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Deals Grid (2-Column Mobile App Grid) -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                 @php
                     $mockDeals = [
                         [
@@ -347,7 +347,7 @@
                             'price' => 149,
                             'coins' => 10,
                             'location' => 'Edappally',
-                            'dist' => '1.8 KM away',
+                            'dist' => '1.8 KM',
                             'rating' => '4.6',
                             'reviews' => 120,
                             'image' => 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80',
@@ -362,7 +362,7 @@
                             'price' => 799,
                             'coins' => 15,
                             'location' => 'Edappally',
-                            'dist' => '1.8 KM away',
+                            'dist' => '1.8 KM',
                             'rating' => '4.3',
                             'reviews' => 86,
                             'image' => 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=500&q=80',
@@ -377,7 +377,7 @@
                             'price' => 510,
                             'coins' => 20,
                             'location' => 'Edappally',
-                            'dist' => '1.8 KM away',
+                            'dist' => '1.8 KM',
                             'rating' => '4.5',
                             'reviews' => 58,
                             'image' => 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80',
@@ -392,7 +392,7 @@
                             'price' => 699,
                             'coins' => 25,
                             'location' => 'Edappally',
-                            'dist' => '1.8 KM away',
+                            'dist' => '1.8 KM',
                             'rating' => '4.2',
                             'reviews' => 40,
                             'image' => 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=500&q=80',
@@ -401,56 +401,56 @@
                 @endphp
 
                 @foreach($mockDeals as $deal)
-                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                         <!-- Image & Badges -->
-                        <div class="relative h-44 overflow-hidden bg-slate-100">
+                        <div class="relative h-32 sm:h-44 overflow-hidden bg-slate-100">
                             <img src="{{ $deal['image'] }}" alt="{{ $deal['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             
                             <!-- Discount Badge -->
-                            <div class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-extrabold px-2.5 py-1 rounded-xl shadow-md">
+                            <div class="absolute top-2 left-2 bg-red-600 text-white text-[9px] sm:text-[11px] font-extrabold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-xl shadow-md">
                                 {{ $deal['discount'] }}
                             </div>
 
                             <!-- Heart Wishlist Action -->
-                            <button onclick="saveDealAction({{ $deal['id'] }}, '{{ $deal['title'] }}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur text-slate-600 hover:text-red-500 hover:bg-white flex items-center justify-center transition shadow-md">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                            <button onclick="saveDealAction({{ $deal['id'] }}, '{{ $deal['title'] }}')" class="absolute top-2 right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur text-slate-600 hover:text-red-500 hover:bg-white flex items-center justify-center transition shadow-md">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                             </button>
                         </div>
 
                         <!-- Card Content -->
-                        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                        <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
                             <div>
-                                <h3 class="text-sm font-extrabold text-slate-900 line-clamp-1 group-hover:text-purple-600 transition">
+                                <h3 class="text-xs sm:text-sm font-extrabold text-slate-900 line-clamp-1 group-hover:text-purple-600 transition">
                                     {{ $deal['title'] }}
                                 </h3>
-                                <p class="text-xs font-semibold text-slate-500 mt-0.5">{{ $deal['shop'] }}</p>
+                                <p class="text-[10px] sm:text-xs font-semibold text-slate-500 mt-0.5 truncate">{{ $deal['shop'] }}</p>
 
                                 <!-- Pricing -->
-                                <div class="flex items-baseline gap-2 mt-2">
-                                    <span class="text-lg font-black text-slate-900">₹{{ $deal['price'] }}</span>
-                                    <span class="text-xs text-slate-400 line-through">₹{{ $deal['original'] }}</span>
-                                    <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">
+                                <div class="flex items-baseline gap-1.5 sm:gap-2 mt-1.5 sm:mt-2 flex-wrap">
+                                    <span class="text-sm sm:text-lg font-black text-slate-900">₹{{ $deal['price'] }}</span>
+                                    <span class="text-[10px] sm:text-xs text-slate-400 line-through">₹{{ $deal['original'] }}</span>
+                                    <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded">
                                         Save ₹{{ $deal['original'] - $deal['price'] }}
                                     </span>
                                 </div>
                             </div>
 
-                            <div class="space-y-2 pt-2 border-t border-slate-100">
+                            <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
                                 <!-- Unlock with Coins Button -->
-                                <button onclick="unlockDealAction({{ $deal['coins'] }}, '{{ $deal['title'] }}')" class="w-full py-2 px-3 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition">
-                                    <span>🔓 Unlock with</span>
+                                <button onclick="unlockDealAction({{ $deal['coins'] }}, '{{ $deal['title'] }}')" class="w-full py-1.5 sm:py-2 px-2 sm:px-3 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 rounded-xl text-[10px] sm:text-xs font-bold flex items-center justify-center gap-1 transition">
+                                    <span>🔓 Unlock</span>
                                     <span class="inline-flex items-center text-amber-600 font-extrabold">🪙 {{ $deal['coins'] }}</span>
                                 </button>
 
                                 <!-- View Deal CTA -->
-                                <a href="/{{ $deal['slug'] }}" class="w-full py-2.5 px-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold flex items-center justify-center transition shadow-sm">
+                                <a href="/{{ $deal['slug'] }}" class="w-full py-2 sm:py-2.5 px-2 sm:px-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-[11px] sm:text-xs font-bold flex items-center justify-center transition shadow-sm">
                                     View Deal
                                 </a>
 
                                 <!-- Distance & Rating Footer -->
-                                <div class="flex items-center justify-between text-[11px] text-slate-400 font-medium pt-1">
-                                    <span>📍 {{ $deal['location'] }} • {{ $deal['dist'] }}</span>
-                                    <span class="text-amber-600 font-bold">⭐ {{ $deal['rating'] }} ({{ $deal['reviews'] }})</span>
+                                <div class="flex items-center justify-between text-[9px] sm:text-[11px] text-slate-400 font-medium pt-0.5">
+                                    <span class="truncate">📍 {{ $deal['location'] }}</span>
+                                    <span class="text-amber-600 font-bold shrink-0">⭐ {{ $deal['rating'] }}</span>
                                 </div>
                             </div>
                         </div>

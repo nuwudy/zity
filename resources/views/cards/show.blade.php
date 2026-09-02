@@ -277,68 +277,71 @@
                 </div>
             </div>
 
-            <!-- Items Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+            <!-- Items Grid (2-Column Mobile App Grid) -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-2">
                 <template x-for="item in filteredItems" :key="item.id">
-                    <div class="bg-slate-50/70 hover:bg-white rounded-3xl p-4 border border-slate-200/70 hover:border-purple-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-3 group">
+                    <div class="bg-white hover:bg-purple-50/20 rounded-3xl p-3 sm:p-4 border border-slate-200/80 hover:border-purple-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
                         
-                        <div class="flex gap-3">
-                            <!-- Image if available -->
-                            <template x-if="item.image">
-                                <div class="w-20 h-20 rounded-2xl overflow-hidden bg-slate-200 shrink-0 relative">
-                                    <img :src="item.image" :alt="item.name" class="w-full h-full object-cover group-hover:scale-105 transition">
-                                    <template x-if="item.badge">
-                                        <span class="absolute top-1 left-1 bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded" x-text="item.badge"></span>
-                                    </template>
-                                </div>
-                            </template>
+                        <div class="space-y-2.5">
+                            <!-- Top Visual Image Box -->
+                            <div class="w-full h-32 sm:h-40 rounded-2xl overflow-hidden bg-gradient-to-tr from-slate-100 to-slate-50 relative flex items-center justify-center">
+                                <template x-if="item.image">
+                                    <img :src="item.image" :alt="item.name" class="w-full h-full object-cover group-hover:scale-108 transition duration-500">
+                                </template>
+                                <template x-if="!item.image">
+                                    <div class="w-full h-full bg-gradient-to-tr from-purple-100 to-indigo-50 flex items-center justify-center text-purple-600 text-3xl font-black">
+                                        <span x-text="item.type === 'service' ? '🔧' : '🛍️'"></span>
+                                    </div>
+                                </template>
 
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-start justify-between gap-1">
-                                    <h4 class="text-sm font-extrabold text-slate-900 line-clamp-1 group-hover:text-purple-700 transition" x-text="item.name"></h4>
-                                    <template x-if="!item.image && item.badge">
-                                        <span class="bg-red-100 text-red-700 text-[10px] font-extrabold px-2 py-0.5 rounded-lg shrink-0" x-text="item.badge"></span>
-                                    </template>
-                                </div>
+                                <!-- Cute Discount / Offer Badge -->
+                                <template x-if="item.badge">
+                                    <span class="absolute top-2 left-2 bg-gradient-to-r from-rose-600 to-red-500 text-white text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded-lg shadow-md uppercase tracking-wider" x-text="item.badge"></span>
+                                </template>
+                            </div>
 
-                                <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-relaxed" x-text="item.description || 'Verified product/service available for booking & order.'"></p>
-
-                                <!-- Price -->
-                                <div class="flex items-baseline gap-2 mt-2">
-                                    <template x-if="item.price > 0">
-                                        <div class="flex items-baseline gap-1.5">
-                                            <span class="text-base font-black text-slate-900" x-text="'₹' + item.price"></span>
-                                            <template x-if="item.original_price && item.original_price > item.price">
-                                                <span class="text-xs text-slate-400 line-through" x-text="'₹' + item.original_price"></span>
-                                            </template>
-                                        </div>
-                                    </template>
-                                    <template x-if="item.price <= 0">
-                                        <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Quote / Booking</span>
-                                    </template>
-                                </div>
+                            <!-- Product Info -->
+                            <div class="space-y-1">
+                                <span class="text-[10px] font-bold text-purple-600 tracking-wide block uppercase" x-text="item.category"></span>
+                                <h4 class="text-xs sm:text-sm font-black text-slate-900 line-clamp-2 leading-snug group-hover:text-purple-700 transition" x-text="item.name"></h4>
+                                <p class="text-[10px] text-slate-400 line-clamp-1" x-text="item.description || 'Verified on Zity.in'"></p>
                             </div>
                         </div>
 
-                        <!-- Action Controls -->
-                        <div class="flex items-center justify-between pt-2 border-t border-slate-200/60">
-                            <span class="text-[10px] text-slate-400 font-semibold" x-text="item.category"></span>
+                        <!-- Price & Action Footer -->
+                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2">
+                            <!-- Price Display -->
+                            <div class="flex items-baseline justify-between">
+                                <template x-if="item.price > 0">
+                                    <div class="flex items-baseline gap-1.5 flex-wrap">
+                                        <span class="text-sm sm:text-base font-black text-slate-900" x-text="'₹' + item.price"></span>
+                                        <template x-if="item.original_price && item.original_price > item.price">
+                                            <span class="text-[11px] text-slate-400 line-through" x-text="'₹' + item.original_price"></span>
+                                        </template>
+                                    </div>
+                                </template>
+                                <template x-if="item.price <= 0">
+                                    <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Quote / Booking</span>
+                                </template>
+                            </div>
 
-                            <div class="flex items-center gap-1.5">
+                            <!-- Cute Button Controls -->
+                            <div>
                                 <template x-if="cart[item.id]">
-                                    <div class="flex items-center gap-2 bg-purple-100 px-2 py-1 rounded-xl">
-                                        <button @click="updateQty(item.id, -1)" class="w-6 h-6 rounded-lg bg-white text-purple-700 font-bold flex items-center justify-center text-xs shadow-xs">-</button>
-                                        <span class="text-xs font-extrabold text-purple-900" x-text="cart[item.id].qty"></span>
-                                        <button @click="updateQty(item.id, 1)" class="w-6 h-6 rounded-lg bg-purple-600 text-white font-bold flex items-center justify-center text-xs shadow-xs">+</button>
+                                    <div class="w-full flex items-center justify-between bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-2 py-1.5 rounded-2xl shadow-md">
+                                        <button @click="updateQty(item.id, -1)" class="w-6 h-6 rounded-xl bg-white/20 hover:bg-white/30 text-white font-black flex items-center justify-center text-xs transition active:scale-90">-</button>
+                                        <span class="text-xs font-black px-1" x-text="cart[item.id].qty"></span>
+                                        <button @click="updateQty(item.id, 1)" class="w-6 h-6 rounded-xl bg-white text-purple-700 font-black flex items-center justify-center text-xs shadow-xs transition active:scale-90">+</button>
                                     </div>
                                 </template>
 
                                 <template x-if="!cart[item.id]">
                                     <button 
                                         @click="addToCart(item)" 
-                                        class="px-3.5 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition shadow-xs flex items-center gap-1"
+                                        class="w-full py-2 px-3 bg-purple-50 hover:bg-purple-600 text-purple-700 hover:text-white border border-purple-200 hover:border-purple-600 rounded-2xl text-xs font-black transition-all duration-200 shadow-xs flex items-center justify-center gap-1.5 group/btn"
                                     >
-                                        <span>+ Add</span>
+                                        <span class="text-sm font-bold group-hover/btn:scale-125 transition-transform">+</span>
+                                        <span>ADD</span>
                                     </button>
                                 </template>
                             </div>

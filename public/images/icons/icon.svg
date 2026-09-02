@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#brandGrad)" />
+  <!-- Pin Icon -->
+  <path d="M256 96c-66.27 0-120 53.73-120 120 0 88.5 120 200 120 200s120-111.5 120-200c0-66.27-53.73-120-120-120z" fill="#ffffff" />
+  <circle cx="256" cy="216" r="48" fill="url(#accentGrad)" />
+  <!-- Letter Z -->
+  <path d="M240 196h32l-24 40h24v8h-32l24-40h-24z" fill="#ffffff" />
+</svg>

@@ -24,6 +24,11 @@ class User extends Authenticatable implements \Filament\Models\Contracts\Filamen
         'password',
         'phone',
         'role',
+        'coins',
+        'credits',
+        'avatar',
+        'is_profile_completed',
+        'is_verified',
     ];
 
     /**
@@ -63,6 +68,18 @@ class User extends Authenticatable implements \Filament\Models\Contracts\Filamen
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function savedDeals()
+    {
+        return $this->hasMany(SavedDeal::class);
+    }
+
+    public function getAllOwnedBusinessesAttribute()
+    {
+        $direct = $this->business ? collect([$this->business]) : collect();
+        $attached = $this->businesses;
+        return $direct->merge($attached)->unique('id');
     }
 
     public function canAccessPanel(\Filament\Panel $panel): bool

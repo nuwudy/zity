@@ -281,9 +281,9 @@
             </div>
         </section>
 
-        <!-- 3. INTERACTIVE WALLET / REWARDS BAR (Matching Image 2) -->
-        <section class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-            <!-- My Zity Coins -->
+        <!-- 3. INTERACTIVE WALLET / REWARDS & MERCHANT BAR (4 Cards) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <!-- 1. My Zity Coins -->
             <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-sm flex items-center justify-between hover:shadow-md transition">
                 <div class="flex items-center gap-3.5">
                     <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-black shrink-0">
@@ -301,7 +301,7 @@
                 </a>
             </div>
 
-            <!-- My Coupons -->
+            <!-- 2. My Coupons -->
             <div class="bg-white rounded-3xl p-4 sm:p-5 border border-slate-100 shadow-sm flex items-center justify-between hover:shadow-md transition">
                 <div class="flex items-center gap-3.5">
                     <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl shrink-0">
@@ -319,7 +319,7 @@
                 </a>
             </div>
 
-            <!-- Refer & Earn Card -->
+            <!-- 3. Refer & Earn Card -->
             <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-3xl p-4 sm:p-5 border border-emerald-200/60 shadow-sm flex items-center justify-between hover:shadow-md transition">
                 <div class="flex items-center gap-3.5">
                     <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-xl shrink-0 shadow-md shadow-emerald-500/20">
@@ -333,9 +333,37 @@
                         <p class="text-[10px] text-emerald-700">Friend gets ₹25 on first claim</p>
                     </div>
                 </div>
-                <button onclick="{{ Auth::check() ? 'document.getElementById(\'referralModal\')?.classList.remove(\'hidden\')' : 'openAuthModal(\'login\')' }}" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition shadow-xs">
+                <button onclick="{{ Auth::check() ? 'document.getElementById(\'referralModal\')?.classList.remove(\'hidden\')' : 'openAuthModal(\'login\')' }}" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition shadow-xs shrink-0">
                     Refer Now
                 </button>
+            </div>
+
+            <!-- 4. Create My Shop / List Your Business (Right after Refer & Earn) -->
+            <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-100/70 rounded-3xl p-4 sm:p-5 border border-purple-200 shadow-sm flex items-center justify-between hover:shadow-md transition">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md shadow-purple-600/20">
+                        🏪
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xs font-extrabold text-purple-950 block">Create My Shop</span>
+                            <span class="bg-emerald-500 text-white text-[8px] font-black px-1.5 py-0.2 rounded uppercase">NEW</span>
+                        </div>
+                        <div class="text-xs font-bold text-purple-800">
+                            List Your Business
+                        </div>
+                        <p class="text-[10px] text-purple-600 font-medium">Reach 1000s of local customers</p>
+                    </div>
+                </div>
+                @auth
+                    <a href="{{ route('profile.index') }}" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition shadow-xs shrink-0">
+                        + Start
+                    </a>
+                @else
+                    <a href="#register-business" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition shadow-xs shrink-0">
+                        + Register
+                    </a>
+                @endauth
             </div>
         </section>
 

@@ -150,73 +150,134 @@
     <!-- MAIN BODY CONTENT -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-6 sm:space-y-10">
 
-        <!-- 2. HERO SPECIAL PROMO CAROUSEL (Matching Image 2: "Tuesday Dhamaaka!") -->
-        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#1e0836] via-[#2e0854] to-[#120324] text-white shadow-2xl p-6 sm:p-10 border border-purple-900/50">
-            <!-- Ambient glows -->
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- 2. HERO SPECIAL BANNER (Matching Uploaded Design: "Find local. Save more.") -->
+        <section class="relative rounded-[32px] overflow-hidden bg-gradient-to-r from-[#170a38] via-[#240e57] to-[#1f0d47] text-white shadow-2xl p-6 sm:p-10 lg:p-12 border border-purple-900/40">
+            <!-- Ambient Lighting & Glows -->
+            <div class="absolute -top-20 -left-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-20 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
                 <!-- Left Hero Copy -->
-                <div class="lg:col-span-6 space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-md">
-                        <span>🔥</span> ONE DAY SPECIAL OFFERS!
+                <div class="lg:col-span-6 space-y-5 relative">
+                    <!-- Floating 3D % Badge -->
+                    <div class="absolute -top-4 right-8 hidden sm:flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-500 text-white font-black text-xl items-center justify-center shadow-lg shadow-purple-500/40 transform rotate-12 animate-subtle border border-purple-400/40">
+                        %
                     </div>
 
-                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-100">
-                        TUESDAY<br><span class="text-white drop-shadow-md">DHAMAAKA!</span>
-                    </h2>
+                    <div class="space-y-2">
+                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.05] text-white">
+                            Find local.<br>
+                            <span class="text-amber-400">Save more.</span>
+                        </h1>
+                        <p class="text-slate-300 text-sm sm:text-base font-medium max-w-sm pt-1 leading-relaxed">
+                            Discover shops, services and exclusive deals near you.
+                        </p>
+                    </div>
 
-                    <p class="text-slate-200 text-xs sm:text-sm max-w-md font-medium">
-                        Grab exclusive local discounts up to 50% off across verified restaurants, meat shops, bakeries and beauty salons in Kochi.
-                    </p>
+                    <!-- Location Deals Pill (Matching Mockup) -->
+                    <div class="pt-2">
+                        <a href="#deals" class="inline-flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-2xl bg-[#2a135e]/90 hover:bg-[#341875] border border-purple-400/30 text-xs sm:text-sm font-bold text-white shadow-inner transition transform active:scale-95 group">
+                            <span class="text-base text-rose-400 group-hover:scale-110 transition">📍</span>
+                            <span>Deals around <span id="heroLocationDisplay">Edappally, Kochi</span></span>
+                            <svg class="w-4 h-4 text-purple-300 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
 
-                    <!-- Trust Points Row -->
-                    <div class="pt-2 flex flex-wrap gap-4 text-[11px] sm:text-xs font-semibold text-purple-200">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-amber-400">🛡️</span> Best Deals Everyday
+                    <!-- Shopping Bags Graphic Accent -->
+                    <div class="hidden sm:flex items-center gap-3 pt-3 opacity-90">
+                        <div class="w-10 h-12 rounded-t-lg rounded-b-xl bg-gradient-to-b from-amber-400 to-orange-500 shadow-md relative flex items-center justify-center text-white text-xs font-black">
+                            <div class="w-4 h-3 border-2 border-white/80 rounded-t-full absolute -top-2"></div>
+                            Z
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-emerald-400">✓</span> Verified Businesses
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-cyan-400">⚡</span> Easy QR Redemption
+                        <div class="w-9 h-11 rounded-t-lg rounded-b-xl bg-gradient-to-b from-purple-500 to-indigo-600 shadow-md relative flex items-center justify-center text-white text-[10px] font-black -ml-5 mt-2">
+                            <div class="w-3.5 h-2.5 border-2 border-white/80 rounded-t-full absolute -top-1.5"></div>
+                            %
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Featured Deal Card (Matching Mockup Fresh Meat / Chicken Deal) -->
+                <!-- Right Hero Visual: 3D Phone Deal Mockup + Streetscape (Matching Image) -->
                 <div class="lg:col-span-6 flex justify-center lg:justify-end">
-                    <div class="w-full max-w-md bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20 shadow-2xl relative overflow-hidden group">
-                        <div class="absolute top-3 right-3 bg-amber-400 text-slate-950 text-[11px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                            15% OFF
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                            <!-- Deal Image Mockup -->
-                            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden bg-slate-800 shrink-0 relative">
-                                <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=400&q=80" alt="Fresh Meat" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                                <div class="absolute bottom-1 left-1 bg-black/70 text-[9px] font-bold px-1.5 py-0.5 rounded text-white">
-                                    Fresh Cut
+                    <div class="relative w-full max-w-lg flex items-center justify-center">
+                        
+                        <!-- Background Streetscape / Store Scene Illustration -->
+                        <div class="absolute inset-y-0 right-0 w-3/4 bg-gradient-to-l from-indigo-950/80 to-transparent rounded-3xl overflow-hidden flex items-end justify-end pointer-events-none opacity-90">
+                            <!-- Shop Silhouettes -->
+                            <div class="flex items-end gap-2 pb-2 pr-2">
+                                <div class="w-16 h-28 bg-[#311768] rounded-t-xl p-1.5 text-center flex flex-col justify-between border-t-2 border-amber-400/40">
+                                    <span class="text-[8px] font-extrabold text-amber-300 bg-amber-400/20 rounded py-0.5">AUTO</span>
+                                    <div class="w-full h-8 bg-purple-900/60 rounded-md"></div>
+                                </div>
+                                <div class="w-20 h-36 bg-[#3d1a80] rounded-t-xl p-1.5 text-center flex flex-col justify-between border-t-2 border-rose-400/40">
+                                    <span class="text-[9px] font-extrabold text-rose-300 bg-rose-400/20 rounded py-0.5">CAFE</span>
+                                    <div class="w-full h-12 bg-purple-900/60 rounded-md"></div>
+                                </div>
+                                <div class="w-20 h-44 bg-[#491f96] rounded-t-xl p-1.5 text-center flex flex-col justify-between border-t-2 border-purple-400/40">
+                                    <span class="text-[9px] font-extrabold text-purple-200 bg-purple-400/20 rounded py-0.5">SALON</span>
+                                    <div class="w-full h-16 bg-purple-900/60 rounded-md"></div>
                                 </div>
                             </div>
 
-                            <!-- Deal Details -->
-                            <div class="space-y-1.5 flex-1">
-                                <span class="text-[10px] font-bold text-amber-300 uppercase tracking-widest block">Timely Fresh</span>
-                                <h3 class="text-base sm:text-lg font-extrabold text-white leading-tight">Chicken Curry Cuts - 1 KG</h3>
-                                <div class="flex items-baseline gap-2 pt-1">
-                                    <span class="text-2xl font-black text-amber-400">₹238</span>
-                                    <span class="text-xs text-slate-400 line-through">₹280</span>
+                            <!-- Big 3D Street Location Pin -->
+                            <div class="absolute bottom-6 right-16 flex flex-col items-center animate-subtle">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white shadow-xl shadow-orange-500/50 border-2 border-white">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                                 </div>
-                                <a href="#deals" class="inline-flex items-center gap-1.5 px-4 py-2 mt-2 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-extrabold rounded-xl transition shadow-lg shadow-amber-400/20">
-                                    <span>SHOP DEAL</span>
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                                <div class="w-6 h-1.5 bg-black/40 rounded-full blur-[2px] mt-0.5"></div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Smartphone Device Mockup (Matching Mockup Deal Card) -->
+                        <div class="relative z-10 w-72 sm:w-80 bg-slate-950 rounded-[40px] p-3 shadow-2xl shadow-purple-950/80 border-4 border-slate-800 ring-1 ring-white/20 transform sm:-rotate-2 hover:rotate-0 transition duration-500">
+                            <!-- Phone Top Notch -->
+                            <div class="w-24 h-4 bg-slate-900 rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <div class="w-2.5 h-2.5 rounded-full bg-slate-800"></div>
+                            </div>
+
+                            <!-- Inside Phone Screen -->
+                            <div class="bg-white rounded-[32px] p-4 text-slate-900 shadow-inner space-y-3 overflow-hidden">
+                                <!-- Top Tag -->
+                                <div class="flex items-center justify-between">
+                                    <span class="bg-indigo-600 text-white text-[9px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider">
+                                        TODAY'S DEAL
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 font-bold">Zity Exclusive</span>
+                                </div>
+
+                                <!-- Deal Title & Serving -->
+                                <div>
+                                    <h3 class="text-base font-black text-slate-900 leading-tight">Chicken Biryani</h3>
+                                    <p class="text-[11px] text-slate-500 font-semibold">1 Bucket Special</p>
+                                </div>
+
+                                <!-- Pricing -->
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xs text-slate-400 line-through">₹500</span>
+                                    <span class="text-2xl font-black text-rose-600">₹349</span>
+                                    <span class="text-[10px] font-black text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded">
+                                        30% OFF
+                                    </span>
+                                </div>
+
+                                <!-- Food Image -->
+                                <div class="h-28 w-full rounded-2xl overflow-hidden bg-slate-900 relative shadow-md">
+                                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=500&q=80" alt="Chicken Biryani" class="w-full h-full object-cover">
+                                    <div class="absolute bottom-1 right-1 bg-black/60 text-[9px] text-white px-1.5 py-0.5 rounded">
+                                        Fresh & Hot
+                                    </div>
+                                </div>
+
+                                <!-- CTA Button -->
+                                <a href="#deals" class="w-full py-2.5 px-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl flex items-center justify-center transition shadow-md shadow-purple-600/30">
+                                    View Deal
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -278,11 +339,11 @@
             </div>
         </section>
 
-        <!-- 4. EXPLORE TOP CATEGORIES (Matching Image 2) -->
+        <!-- 4. BROWSE CATEGORIES (Matching Uploaded Mockup) -->
         <section class="space-y-4">
             <div class="flex items-center justify-between">
                 <div>
-                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Explore Top Categories</h2>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Browse Categories</h2>
                     <p class="text-xs text-slate-500">Find verified merchants & exclusive deals by category</p>
                 </div>
                 <a href="{{ route('search') }}" class="text-xs font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1">
@@ -763,6 +824,8 @@
 
         function selectLocation(loc) {
             document.getElementById('currentLocationText').innerText = loc;
+            const heroLoc = document.getElementById('heroLocationDisplay');
+            if (heroLoc) heroLoc.innerText = loc;
             document.getElementById('locationDropdown').classList.add('hidden');
         }
 

@@ -43,6 +43,10 @@ class ZityCardController extends Controller
                 'name' => $product->name,
                 'category' => $product->category ?: 'General',
                 'price' => (float) ($product->price ?? 0),
+                'original_price' => (float) ($product->original_price ?? 0),
+                'discount_percent' => (int) ($product->effective_discount_percent ?? 0),
+                'deal_coins' => (int) ($product->deal_coins ?? 10),
+                'badge' => $product->badge ?: ($product->effective_discount_percent > 0 ? $product->effective_discount_percent . '% OFF' : null),
                 'description' => $product->description ?? '',
                 'image' => $product->image ? asset('storage/' . $product->image) : null,
             ];
